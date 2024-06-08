@@ -1,0 +1,53 @@
+<app-simple-main-layout>
+    <d-icon class="icon" [icon]="'icon-op-list'"></d-icon>
+    <span class="title">Todo</span>
+    <div class="optgroup">
+        <d-button bsStyle="primary" (click)="btnCreate_click()"> Create </d-button>
+        <!-- <d-button bsStyle="common"> Cancel </d-button> -->
+    </div>
+
+    <div class="content">
+        <d-data-table dLoading [dataSource]="dsTodo" [scrollable]="true" [tableOverflowType]="'overlay'"
+            [showLoading]="showLoading" [backdrop]="true" [striped]="true" [resizeable]="true" [tableLayout]="'fixed'"
+            [shadowType]="'embed'" 
+            [fixHeader]="true" [containFixHeaderHeight]="true" [virtualScroll]="true" [tableHeight]="'100%'">
+
+            <d-column field="$index" header="#" [width]="'30px'" [minWidth]="'30px'">
+            </d-column>
+            <d-column field="caption" header="Caption" fieldType="text" [width]="'300px'" [minWidth]="'200px'">
+            </d-column>
+            <d-column field="status" header="Status" fieldType="text" [width]="'100px'" [minWidth]="'100px'">
+            </d-column>
+            <d-column field="category" header="Category" [fieldType]="'customized'" [width]="'100px'"
+                [minWidth]="'100px'">
+                <d-cell>
+                    <ng-template let-cellItem="cellItem">
+                        <span [ngClass]="cellItem.title">{{ cellItem.title }}</span>
+                    </ng-template>
+                </d-cell>
+            </d-column>
+            <d-column field="createdDate" header="Create Date" [fieldType]="'customized'" [width]="'110px'"
+                [minWidth]="'110px'">
+                <d-cell>
+                    <ng-template let-cellItem="cellItem">
+                        <span>{{ cellItem | date: 'yyyy-MM-dd' }}</span>
+                    </ng-template>
+                </d-cell>
+            </d-column>
+            <d-column field="createdBy" header="Creator" fieldType="text" [width]="'110px'" [minWidth]="'90px'">
+            </d-column>
+            <d-column header="Action" [fieldType]="'customized'" [width]="'100px'" [minWidth]="'80px'">
+                <d-cell>
+                    <ng-template let-rowItem="rowItem">
+                        <div class="tb_action_btn_group">
+                            <d-button icon="icon-edit" bsSize="sm" title="edit" shape="circle" class="btnEdit"
+                                (click)="btnEdit_click(rowItem)"></d-button>
+                            <d-button icon="icon-right" bsSize="sm" title="done" shape="circle" class="btnDone"
+                                (click)="btnDone_click(rowItem)"> </d-button>
+                        </div>
+                    </ng-template>
+                </d-cell>
+            </d-column>
+        </d-data-table>
+    </div>
+</app-simple-main-layout>

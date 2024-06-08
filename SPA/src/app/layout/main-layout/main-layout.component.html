@@ -1,0 +1,49 @@
+<d-layout>
+    <d-header>
+        <div class="header">
+            <div>
+                <d-button icon="icon-list-view" (btnClick)="collapsed = !collapsed" class="collapse"></d-button>
+                <ng-content select=".title"></ng-content>
+            </div>
+            <div class="userInfo">
+                <d-avatar [name]="loginUser.name" [width]="30" [height]="30"></d-avatar>
+                <div class="user">
+                    <span class="name"> {{ loginUser.name }} </span>
+                    <span class="email"> {{ loginUser.email }} </span>
+                </div>
+            </div>
+        </div>
+    </d-header>
+    <d-layout>
+        <d-aside>
+            <div class="menu" [ngClass]="collapsed ? 'close' : 'open'">
+                <div dMenu [collapsed]="collapsed">
+                    <ng-container *ngFor="let m of menus; trackBy: trackByMenu">
+                        <div dSubMenu [title]="m.name" [icon]="m.icon!" [open]="openKeys.includes(m.key)"
+                            (openChange)="openChange($event, m.key)" *ngIf="m.children?.length; else leafTpl">
+                            <div dMenuItem (itemClick)="itemClick(item.key)" [active]="item.key === activeKey"
+                                *ngFor="let item of m.children; trackBy: trackByMenu">
+                                <d-icon class="devui-menu-item-icon" [icon]="item.icon!" />
+                                <span class="devui-menu-item-name over-flow-ellipsis">{{ item.name }}</span>
+                            </div>
+                        </div>
+                        <ng-template #leafTpl>
+                            <div dMenuItem (itemClick)="itemClick(m.key)" [active]="m.key === activeKey" dTooltip
+                                [content]="collapsed ? m.name : ''" position="right">
+                                <d-icon class="devui-menu-item-icon" [icon]="m.icon!" />
+                                <span class="devui-menu-item-name over-flow-ellipsis">{{ m.name }}</span>
+                            </div>
+                        </ng-template>
+                    </ng-container>
+                </div>
+            </div>
+        </d-aside>
+        <d-content>
+            <div class="inner-content">
+                <router-outlet></router-outlet>
+                <!-- <app-simple-main-layout></app-simple-main-layout> -->
+            </div>
+        </d-content>
+    </d-layout>
+    <d-footer>footer</d-footer>
+</d-layout>

@@ -1,0 +1,84 @@
+@import 'ng-devui/styles-var/devui-var.scss';
+
+d-layout {
+  background-color: $devui-base-bg;
+}
+
+d-aside {
+  border-left: 1px solid transparent;
+  position: relative;
+
+  .menu {
+    height: 100%;
+    font-size: 0.9rem;
+    &.close {
+      width: 60px;
+    }
+
+    &.open {
+      width: 200px;
+    }
+  }
+}
+
+d-header {
+  text-align: left;
+  height: 3.5rem;
+  background-color: $devui-base-bg-dark;
+
+  .header {
+    color: $devui-light-text;
+    font-size: $devui-font-size-icon;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+
+    d-button,
+    .userInfo {
+      margin: 0 12px;
+    }
+
+    .userInfo {
+      display: flex;
+      align-items: center;
+      column-gap: 10px;
+
+      .user {
+        display: flex;
+        flex-direction: column;
+        .name {
+          font-size: 0.85rem;
+        }
+
+        .email {
+          font-size: 0.7rem;
+        }
+      }
+    }
+  }
+}
+
+d-content {
+  padding: 1rem;
+  background-color: $devui-global-bg;
+  width: calc(100% - 200px);
+
+  d-breadcrumb {
+    margin-top: 8px;
+  }
+
+  .inner-content {
+    background-color: $devui-base-bg;
+    padding: 1rem;
+    height: 100%;
+    border-radius: 0.75rem;
+    font-size: 1.2rem;
+  }
+}
+
+d-footer {
+  color: $devui-light-text;
+  background-color: $devui-base-bg-dark;
+  padding: 8px 24px;
+}

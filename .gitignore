@@ -1,0 +1,18 @@
+# Compiled output
+SPA/dist
+SPA/tmp
+SPA/out-tsc
+SPA/bazel-out
+SPA/.vscode
+SPA/.angular
+
+# Node
+SPA/node_modules
+SPA/npm-debug.log
+SPA/yarn-error.log
+
+API/.vs
+API/bin
+API/obj
+
+# Visual Studio Code
